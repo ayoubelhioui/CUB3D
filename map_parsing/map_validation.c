@@ -19,7 +19,9 @@ void	checking_rgb_number(char *secondPart, t_checking_rgb *var)
 		var->i++;
 	var->end = var->i - var->start;
 	var->number = ft_substr(secondPart, var->start, var->end);
+	printf("before : %s\n", var->number);
 	var->colorNumber = ft_atoi(var->number);
+	printf("after : %d\n", var->colorNumber);
 	if (var->end > 3 || var->colorNumber < 0 || var->colorNumber > 255)
 		errorMessage(WRONG_RGB_MSG);
 	var->value += var->colorNumber << var->base;
@@ -49,30 +51,10 @@ int	checkingRGBFormat(char *secondPart)
 			errorMessage(WRONG_RGB_MSG);
 		var.i++;
 	}
-	// printf("the counter is : %d\n", var.digitsCounter);
 	if (var.digitsCounter != 3)
 		errorMessage(WRONG_RGB_MSG);
-	return (1);
-	// (void)firstPart;
-	// t_checking_rgb var;
-
-	// // printf("second is : |%s|\n", secondPart);
-	// rgb_init(&var);
-	// checkingRGBFormatUtils(secondPart, &var);
-	// var.number = ft_substr(secondPart, var.start, var.end);
-	// var.colorNumber = ft_atoi(var.number);
-	// printf("[%d]\n", var.colorNumber);
-	// var.value += var.colorNumber;
-	// if (!(var.digitCounter >= 1 && var.digitCounter <= 3) \
-    // || var.commasCounter != 2 \
-    // || !(var.colorNumber >= 0 && var.colorNumber <= 255))
-	// {
-	// 	free (var.number);
-	// 	errorMessage(WRONG_RGB_MSG);
-	// }
-	// if (var.number)
-	// 	free (var.number);
-	// return (var.value);
+	printf("it is : %d\n", var.value);
+	return (var.value);
 }
 
 void    isSurroundedByWallsUtils(char *trimmed)

@@ -6,7 +6,7 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:26:26 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/08 10:10:44 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/08 15:54:12 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <math.h>
 #include <stdlib.h>
 
+#define DOUBLE_NEW_LINE "\033[0;31mError \nMAP Contain Multiple New Lines"
 #define CEILING_COLOR_MISSING "\033[0;31mError \nCeiling Color Is Missing"
 #define FLOOR_COLOR_MISSING "\033[0;31mError \nFloor Color Is Missing"
 #define SOUTH_TEXTURE_MISSING "\033[0;31mError \nSOUTH Texture Is Missing"
