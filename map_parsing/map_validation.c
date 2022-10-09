@@ -19,9 +19,9 @@ void	checking_rgb_number(char *secondPart, t_checking_rgb *var)
 		var->i++;
 	var->end = var->i - var->start;
 	var->number = ft_substr(secondPart, var->start, var->end);
-	printf("before : %s\n", var->number);
+	// printf("before : %s\n", var->number);
 	var->colorNumber = ft_atoi(var->number);
-	printf("after : %d\n", var->colorNumber);
+	// printf("after : %d\n", var->colorNumber);
 	if (var->end > 3 || var->colorNumber < 0 || var->colorNumber > 255)
 		errorMessage(WRONG_RGB_MSG);
 	var->value += var->colorNumber << var->base;
@@ -53,7 +53,7 @@ int	checkingRGBFormat(char *secondPart)
 	}
 	if (var.digitsCounter != 3)
 		errorMessage(WRONG_RGB_MSG);
-	printf("it is : %d\n", var.value);
+	
 	return (var.value);
 }
 
