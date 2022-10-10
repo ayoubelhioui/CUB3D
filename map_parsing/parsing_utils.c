@@ -6,7 +6,7 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 11:15:12 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/08 10:05:58 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/09 13:23:37 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	checking_duplicate_init(t_checkDuplicate *checkDuplicate)
 	checkDuplicate->fCounter = 0;
 	
 }
+
 void	path_init(t_directions *path)
 {
 	path->NORTH = NULL;
@@ -51,7 +52,6 @@ void	rgb_init(t_checking_rgb *var)
 	var->start = 0;
 	var->value = 0;
 }
-
 
 void	ft_free(char **data)
 {

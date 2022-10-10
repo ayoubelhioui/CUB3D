@@ -6,7 +6,7 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:26:26 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/08 15:54:12 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:34:02 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 #define INVALID_MAP "\033[0;31mError \nInvalid Map"
 #define SURROUNDED_SPACE_MSG "\033[0;31mError \nSpace Should Be Surrounded By Walls"
 #define SURROUNDED_MSG "\033[0;31mError \nMap Should Be Surrounded By Walls"
-#define INVALID_DIRECTION_MSG "\033[0;31mError \nWrite A Correct Direction"
+#define INVALID_DIRECTION_MSG "\033[0;31mError \nInvalid Input"
 #define NOTFOUND_TEXTURE_MSG "\033[0;31mError \nTexture Not Found"
 #define WRONG_RGB_MSG "\033[0;31mError \nWrong RGB Format"
 #define FLOOR_CEILING_MISSING_MSG "\033[0;31mError \nFloor Or Ceiling Color Missing"
@@ -188,6 +188,7 @@ typedef struct s_threed_handle
 	int put_pos;
 } t_threed_handle;
 
+void 	unwanted_characters(char *map, t_directions *path, int *isExist);
 void	checking_duplicate_init(t_checkDuplicate *checkDuplicate);
 void	rgb_init(t_checking_rgb *var);
 void    unwantedCharactersUtils(int *isExist, char **map, t_directions  *path, int i);
