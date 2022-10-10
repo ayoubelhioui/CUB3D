@@ -6,7 +6,7 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:26:26 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/09 17:34:02 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/10 10:57:29 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 #define FLOOR_CEILING_MISSING_MSG "\033[0;31mError \nFloor Or Ceiling Color Missing"
 #define UNWANTED_CHARACTER_MSG "\033[0;31mError \nUnwanted Character Exist"
 #define CONTAIN_MORE_MSG "\033[0;31mError \nMap Mustn't Contain More Than 1 Player"
-#define ERROR_OCCURRED "Error occurred"
+#define ERROR_OCCURRED "\033[0;31mError \nError occurred"
 #define _NORTH "NO"
 #define _WEST "WE"
 #define _EAST "EA"
@@ -57,6 +57,15 @@
 #define ZERO '0'
 #define TAB '	'
 #define ONE '1'
+
+
+typedef struct map_content_vars
+{
+	char	*enteredData;
+	char	*trimmedData;
+	int linesCounter;
+	int i;
+}				t_mapContentVars;
 
 typedef struct checkDuplicate
 {
@@ -179,6 +188,15 @@ typedef struct s_ray_steps
 	int vertical;
 }	t_ray_steps;
 
+typedef struct s_second_part_init
+{
+	char	*map;
+	char 	*enteredData;
+	int		isPlayerExist;
+	int 	i;
+	int 	counter;
+}				t_secondPartVars;
+
 typedef struct s_threed_handle
 {
 	int Xoffset;
@@ -188,7 +206,12 @@ typedef struct s_threed_handle
 	int put_pos;
 } t_threed_handle;
 
-void 	unwanted_characters(char *map, t_directions *path, int *isExist);
+int		is_full_spaces(char *enteredData);
+int		check_for_double_newlines(char *map);
+void    missingTexture(t_checkDuplicate *vars);
+void	map_content_init(t_mapContentVars *vars);
+void	second_part_init(t_secondPartVars *vars);
+void 	unwanted_characters(t_secondPartVars *vars);
 void	checking_duplicate_init(t_checkDuplicate *checkDuplicate);
 void	rgb_init(t_checking_rgb *var);
 void    unwantedCharactersUtils(int *isExist, char **map, t_directions  *path, int i);

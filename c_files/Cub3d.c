@@ -6,7 +6,7 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:03:46 by ijmari            #+#    #+#             */
-/*   Updated: 2022/10/03 10:16:38 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/10 11:25:14 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	startGame(t_directions *path)
 	get_rays(&player);
 	render_3d(&player);
 	mlx_put_image_to_window(player.image.mlx, player.image.win, \
-	player.img.img, 0, 0);
+	player.img.img, 0, 0);   
 	mlx_hook(player.image.win, 2, 0, next_frame, &player);
 	mlx_hook(player.image.win, 3, 0, stop, NULL);
 	mlx_hook(player.image.win, 17, (1L << 15), close_win, &player);

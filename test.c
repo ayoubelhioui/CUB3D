@@ -6,6 +6,4 @@ void fun()
 }
 int main()
 {
-	fun();
-	system("leaks a.out");
 }

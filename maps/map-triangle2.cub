@@ -1,26 +1,25 @@
-F 255              , 255        ,       255
-NO ./textures/path_to_the_north_texture
+                        F 255              ,        255           ,        255
+           NO                         ./textures/path_to_the_north_texture
 
 
 
 
 
-C 255,     255,         255
+              C 255,     255,         255                
 
 
 
-
-SO ./textures/path_to_the_south_texture
-EA ./textures/path_to_the_east_texture
-WE ./textures/path_to_the_west_texture
+                       SO                         ./textures/path_to_the_south_texture                      
+EA         ./textures/path_to_the_east_texture                                
+         WE            ./textures/path_to_the_west_texture 
 
 
          1111111111111111111111111
          1000000000110000000000001
          1011000001110000000000001
-         10010000000000000N0000001
+         1001000000000000000000001
 111111111011000001110000000000001
-100000000011000001110111111111111
+1S0000000011000001110111111111111
 11110111111111011100000010001
 11110111111111011101010010001
 11000000110101011100000010001

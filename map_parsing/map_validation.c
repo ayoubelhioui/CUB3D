@@ -14,6 +14,7 @@
 
 void	checking_rgb_number(char *secondPart, t_checking_rgb *var)
 {
+	var->digitsCounter++;
 	var->start = var->i;
 	while (ft_isdigit(secondPart[var->i]))
 		var->i++;
@@ -25,6 +26,7 @@ void	checking_rgb_number(char *secondPart, t_checking_rgb *var)
 	var->value += var->colorNumber << var->base;
 	var->base -= 8;
 }
+
 int	checkingRGBFormat(char *secondPart)
 {
 	t_checking_rgb var;
@@ -34,7 +36,6 @@ int	checkingRGBFormat(char *secondPart)
 	{
 		if (ft_isdigit(secondPart[var.i]))
 		{
-			var.digitsCounter++;
 			checking_rgb_number(secondPart, &var);
 			continue;
 			if (!secondPart[var.i])
@@ -55,18 +56,6 @@ int	checkingRGBFormat(char *secondPart)
 	return (var.value);
 }
 
-void    isSurroundedByWallsUtils(char *trimmed)
-{
-    int j;
-
-    j = 0;
-    while (trimmed[j])
-    {
-        if (trimmed[j] != '1' && trimmed[j] != SPACE)
-            errorMessage(SURROUNDED_MSG);
-        j++;
-    }
-}
 int	is_full_spaces(char *enteredData)
 {
 	int	i;
@@ -79,31 +68,6 @@ int	is_full_spaces(char *enteredData)
 		i++;			
 	}
 	return (1);
-}
-void	isSurroundedByWalls(char **map, int map_height)
-{
-	int	stringLength;
-	int	i;
-	char	*trimmed;
-
-	i = 0;
-	stringLength = 0;
-	while (map[i])
-	{
-		trimmed = ft_strtrim(map[i], " ");
-		stringLength = ft_strlen(trimmed) - 1;
-		if (is_full_spaces(trimmed))
-		{
-			i++;
-			continue;
-		}
-		else if (trimmed[0] != '1' || trimmed[stringLength] != '1')
-            errorMessage(SURROUNDED_MSG);
-		if (i == 0 || i == map_height - 1)
-            isSurroundedByWallsUtils(trimmed);
-		free (trimmed);
-		i++;
-	}
 }
 
 void    correctPositionForSpaceUtils(int i, int map_height, char **map)
@@ -148,5 +112,4 @@ void	mapValidation(t_directions *path)
 	map_height = getSize(path->map);
 	isSurroundedByWalls(path->map, map_height);
 	correctPositionForSpace(path->map, map_height);
-	// unwantedCharacters(path->map, path);
 }

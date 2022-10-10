@@ -6,38 +6,11 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:26:09 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/09 20:37:44 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/10 10:58:50 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-	
-int	getSize(char **data)
-{
-	int	i;
-
-	i = 0;
-	while (data[i])
-		i++;
-	return (i);
-}
-
-void    missingTexture(t_checkDuplicate *vars)
-{
-    if (vars->soCounter == 0)
-        errorMessage(SOUTH_TEXTURE_MISSING);
-    else if (vars->weCounter == 0)
-        errorMessage(WEST_TEXTURE_MISSING);
-    else if (vars->noCounter == 0)
-        errorMessage(NORTH_TEXTURE_MISSING);
-    else if (vars->eaCounter == 0)
-        errorMessage(EAST_TEXTURE_MISSING);
-    else if (vars->fCounter == 0)
-        errorMessage(FLOOR_COLOR_MISSING);
-    else if (vars->cCounter == 0)
-        errorMessage(CEILING_COLOR_MISSING);
-}
-
 
 void	choosing_direction_utils(char *firstPart, char *secondPart, t_checkDuplicate *vars, t_directions *path)
 {
@@ -122,19 +95,6 @@ void    map_first_part(char *enteredData, t_directions *path, t_checkDuplicate *
 		errorMessage(INVALID_DIRECTION_MSG);
 }
 
-int	check_for_double_newlines(char *map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		if (map[i] == NEW_LINE && map[i + 1] == NEW_LINE)
-			errorMessage(DOUBLE_NEW_LINE);
-		i++;
-	}
-	return (0);
-}
 void	get_player_position(t_directions *path)
 {
 	int	i;
@@ -148,6 +108,7 @@ void	get_player_position(t_directions *path)
 		{
 			if (path->map[i][j] == 'N' || path->map[i][j] == 'S' || path->map[i][j] == 'W' || path->map[i][j] == 'E')
 			{
+				path->startPosition = path->map[i][j];
 				path->PLAYER_X = j;
 				path->PLAYER_Y = i;
 				return ;
@@ -157,40 +118,32 @@ void	get_player_position(t_directions *path)
 		i++;
 	}
 }
-void	map_second_part(int fd, t_directions *path)
-{
-	char	*map;
-	char 	*data;
-	int		isPlayerExist;
-	int 	i;
-	int 	counter;
-	
 
-	i = 0;
-	data = NULL;
-	map = NULL;
-	isPlayerExist = 0;
-	counter = 0;
+void	map_second_part(int fd, t_directions *path)
+{	
+	t_secondPartVars vars;
+
+	second_part_init(&vars);
 	while (TRUE)
 	{
-		data = get_next_line(fd);
-		if (!data)
+		vars.enteredData = get_next_line(fd);
+		if (!vars.enteredData)
 			break ;
-		if (ft_strncmp(data, "\n"))
-			counter++;
-		unwanted_characters(data, path, &isPlayerExist);
-		map = ft_strjoin(map, data);
-		free (data);
+		if (ft_strncmp(vars.enteredData, "\n"))
+			vars.counter++;
+		unwanted_characters(&vars);
+		vars.map = ft_strjoin(vars.map, vars.enteredData);
+		free (vars.enteredData);
 	}
-	if (counter < 3)
+	if (vars.counter < 3)
 		errorMessage(INVALID_MAP);
-	if (isPlayerExist == 0)
+	if (vars.isPlayerExist == 0)
 		errorMessage(MISSING_PLAYER_MSG);
-	while (map[i] && map[i] == NEW_LINE)
-		i++;
-	path->map = ft_split(map + i, NEW_LINE);
+	while (vars.map[vars.i] && vars.map[vars.i] == NEW_LINE)
+		vars.i++;
+	path->map = ft_split(vars.map + vars.i, NEW_LINE);
 	get_player_position(path);
-	check_for_double_newlines(map + i);
+	check_for_double_newlines(vars.map + vars.i);
 	mapValidation(path);
 }
 void	space_skipping(char *map, int *index)
@@ -201,33 +154,28 @@ void	space_skipping(char *map, int *index)
 
 void	gettingMapContent(int fd, t_directions *path)
 {
+	t_mapContentVars vars;
 	t_checkDuplicate checkDuplicate;
-	char	*data;
-	char	*trimmed;
-	int counter;
-	int i;
 
-	i = 0;
-	counter = 0;
 	checking_duplicate_init(&checkDuplicate);
-	trimmed = NULL;
-	while (counter < 6)
+	map_content_init(&vars);
+	while (vars.linesCounter < 6)
 	{
-		data = get_next_line(fd);
-		if (!data)
+		vars.enteredData = get_next_line(fd);
+		if (!vars.enteredData)
 			break ;
-		if (ft_strncmp(data, "\n"))
+		if (ft_strncmp(vars.enteredData, "\n"))
 		{
-			if (data[ft_strlen(data) - 1] == NEW_LINE)
-				data[ft_strlen(data) - 1] = '\0';
-			trimmed = ft_strtrim(data, " \n");
-			counter++;
-        	map_first_part(trimmed, path, &checkDuplicate);
+			if (vars.enteredData[ft_strlen(vars.enteredData) - 1] == NEW_LINE)
+				vars.enteredData[ft_strlen(vars.enteredData) - 1] = '\0';
+			vars.trimmedData = ft_strtrim(vars.enteredData, " ");
+			vars.linesCounter++;
+        	map_first_part(vars.trimmedData, path, &checkDuplicate);
 		}
-		free (data);
-		i++;
+		free (vars.enteredData);
+		vars.i++;
 	}
-	if (counter < 6)
+	if (vars.linesCounter < 6)
 		errorMessage(INVALID_MAP);
 	missingTexture(&checkDuplicate);
 	map_second_part(fd, path);
@@ -242,15 +190,11 @@ int main(int ac, char **av)
 	
 	path_init(&path);
 	cub_extension = search(av[1], '.');
-	if (cub_extension && ac == 2)
+	if (cub_extension && ft_strncmp(cub_extension, ".cub") == 0 && ac == 2)
 	{
-		if (ft_strncmp(cub_extension, ".cub") == 0)
-		{
-			fd = open(av[1], 2);
-			gettingMapContent(fd, &path);
-			printf("here\n");
-			startGame(&path);
-		}
+		fd = open(av[1], 2);
+		gettingMapContent(fd, &path);
+		startGame(&path);
 	}
 	else
 		errorMessage(ERROR_OCCURRED);

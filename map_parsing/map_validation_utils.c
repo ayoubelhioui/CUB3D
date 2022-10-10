@@ -6,75 +6,81 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:32:16 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/09 17:41:28 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/10 10:58:03 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-// void    unwantedCharactersUtils(int *isExist, char **map, t_directions  *path, int i)
-// {
-//     int j;
-
-//     j = 0;
-//     while (map[i][j])
-//     {
-//         if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W' || map[i][j] == 'E')
-//         {
-//             if (*isExist == 0)
-//             {
-//                 path->PLAYER_Y = i;
-//                 path->PLAYER_X = j;
-//                 path->startPosition = map[i][j];
-//                 *isExist = 1;
-//             }
-//             else
-//                 errorMessage(CONTAIN_MORE_MSG);
-//         }
-//         else if (map[i][j] != ZERO && map[i][j] != ONE && map[i][j] != SPACE)
-//             errorMessage(UNWANTED_CHARACTER_MSG);
-//         j++;
-//     }
-// }
-
-// void    unwantedCharacters(char **map, t_directions *path)
-// {
-//     int i;
-//     int isExist;
-
-//     i = 0;
-//     isExist = 0;
-//     while (map[i])
-// 	{
-//         unwantedCharactersUtils(&isExist, map, path, i);
-// 		i++;
-// 	}
-// 	if (isExist == 0)
-// 		errorMessage(MISSING_PLAYER_MSG);
-// }
-
-void unwanted_characters(char *map, t_directions *path, int *isExist)
+void    isSurroundedByWallsUtils(char *trimmed)
 {
     int j;
 
     j = 0;
-    while (map[j])
+    while (trimmed[j])
     {
-        if (map[j] == 'N' || map[j] == 'S' || map[j] == 'W' || map[j] == 'E')
+        if (trimmed[j] != '1' && trimmed[j] != SPACE)
+            errorMessage(SURROUNDED_MSG);
+        j++;
+    }
+}
+
+void	isSurroundedByWalls(char **map, int map_height)
+{
+	int	stringLength;
+	int	i;
+	char	*trimmed;
+
+	i = 0;
+	stringLength = 0;
+	while (map[i])
+	{
+		trimmed = ft_strtrim(map[i], " ");
+		stringLength = ft_strlen(trimmed) - 1;
+		if (is_full_spaces(trimmed))
+		{
+			i++;
+			continue;
+		}
+		else if (trimmed[0] != '1' || trimmed[stringLength] != '1')
+            errorMessage(SURROUNDED_MSG);
+		if (i == 0 || i == map_height - 1)
+            isSurroundedByWallsUtils(trimmed);
+		free (trimmed);
+		i++;
+	}
+}
+
+
+int	check_for_double_newlines(char *map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		if (map[i] == NEW_LINE && map[i + 1] == NEW_LINE)
+			errorMessage(DOUBLE_NEW_LINE);
+		i++;
+	}
+	return (0);
+}
+    
+void unwanted_characters(t_secondPartVars *vars)
+{
+    int j;
+
+    j = 0;
+    while (vars->enteredData[j])
+    {
+        if (vars->enteredData[j] == 'N' || vars->enteredData[j] == 'S' || vars->enteredData[j] == 'W' || vars->enteredData[j] == 'E')
         {
-            if (*isExist == 0)
-            {
-                // printf("the player is : %c, i is : %d and j is : %d\n", map[j], i, j);
-                // path->PLAYER_Y = j;
-                // path->PLAYER_X = i;
-                path->startPosition = map[j];
-                printf("start position is : %c\n", path->startPosition);
-                *isExist = 1;
-            }
+            if (vars->isPlayerExist == 0)
+                vars->isPlayerExist = 1;
             else
                 errorMessage(CONTAIN_MORE_MSG);
         }
-        else if (map[j] != ZERO && map[j] != ONE && map[j] != SPACE && map[j] != NEW_LINE)
+        else if (vars->enteredData[j] != ZERO && vars->enteredData[j] != ONE && vars->enteredData[j] != SPACE && vars->enteredData[j] != NEW_LINE)
             errorMessage(UNWANTED_CHARACTER_MSG);
         j++;
     }
