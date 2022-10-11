@@ -6,17 +6,17 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 11:15:12 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/10 10:51:22 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:36:58 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void    texturesCounterChecker(int *textureCounter, char *message)
+void	counter_checker(int *texturecounter, char *message)
 {
-	if (*textureCounter == 1)
-		errorMessage(message);
-	*textureCounter = 1;
+	if (*texturecounter == 1)
+		error_message(message);
+	*texturecounter = 1;
 }
 
 void	ft_free(char **data)
@@ -29,13 +29,13 @@ void	ft_free(char **data)
 	free (data);
 }
 
-void	errorMessage(char *message)
+void	error_message(char *message)
 {
 	printf("%s\n", message);
 	exit (1);
 }
 
-int	getSize(char **data)
+int	get_size(char **data)
 {
 	int	i;
 
@@ -45,18 +45,18 @@ int	getSize(char **data)
 	return (i);
 }
 
-void    missingTexture(t_checkDuplicate *vars)
+void	missing_texture(t_checkDuplicate *vars)
 {
-    if (vars->soCounter == 0)
-        errorMessage(SOUTH_TEXTURE_MISSING);
-    else if (vars->weCounter == 0)
-        errorMessage(WEST_TEXTURE_MISSING);
-    else if (vars->noCounter == 0)
-        errorMessage(NORTH_TEXTURE_MISSING);
-    else if (vars->eaCounter == 0)
-        errorMessage(EAST_TEXTURE_MISSING);
-    else if (vars->fCounter == 0)
-        errorMessage(FLOOR_COLOR_MISSING);
-    else if (vars->cCounter == 0)
-        errorMessage(CEILING_COLOR_MISSING);
+	if (vars->socounter == 0)
+		error_message(SOUTH_TEXTURE_MISSING);
+	else if (vars->wecounter == 0)
+		error_message(WEST_TEXTURE_MISSING);
+	else if (vars->nocounter == 0)
+		error_message(NORTH_TEXTURE_MISSING);
+	else if (vars->eacounter == 0)
+		error_message(EAST_TEXTURE_MISSING);
+	else if (vars->fcounter == 0)
+		error_message(FLOOR_COLOR_MISSING);
+	else if (vars->ccounter == 0)
+		error_message(CEILING_COLOR_MISSING);
 }

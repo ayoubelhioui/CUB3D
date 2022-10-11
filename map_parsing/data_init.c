@@ -6,7 +6,7 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 10:47:40 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/10 10:49:14 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:36:01 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,46 @@
 
 void	checking_duplicate_init(t_checkDuplicate *checkDuplicate)
 {
-	checkDuplicate->noCounter = 0;
-	checkDuplicate->cCounter = 0;
-	checkDuplicate->weCounter = 0;
-	checkDuplicate->soCounter = 0;
-	checkDuplicate->eaCounter = 0;
-	checkDuplicate->fCounter = 0;
-	
+	checkDuplicate->nocounter = 0;
+	checkDuplicate->ccounter = 0;
+	checkDuplicate->wecounter = 0;
+	checkDuplicate->socounter = 0;
+	checkDuplicate->eacounter = 0;
+	checkDuplicate->fcounter = 0;
 }
 
 void	map_content_init(t_mapContentVars *vars)
 {
 	vars->i = 0;
-	vars->linesCounter = 0;
-	vars->trimmedData = NULL;
+	vars->linescounter = 0;
+	vars->trimmeddata = NULL;
 }
 
 void	second_part_init(t_secondPartVars *vars)
 {
 	vars->i = 0;
-	vars->enteredData = NULL;
+	vars->entereddata = NULL;
 	vars->map = NULL;
-	vars->isPlayerExist = 0;
+	vars->isplayerexist = 0;
 	vars->counter = 0;
 }
+
 void	path_init(t_directions *path)
 {
-	path->NORTH = NULL;
-	path->EAST = NULL;
-	path->WEST = NULL;
-	path->SOUTH = NULL;
-	path->CEILING_COLOR = 0;
-	path->FLOOR_COLOR = 0;
+	path->north = NULL;
+	path->east = NULL;
+	path->west = NULL;
+	path->south = NULL;
+	path->ceiling_color = 0;
+	path->floor_color = 0;
 }
 
 void	rgb_init(t_checking_rgb *var)
 {
-	var->digitsCounter = 0;
+	var->digitscounter = 0;
 	var->base = 16;
-	var->colorNumber = 0;
-	var->commasCounter = 0;
+	var->colornumber = 0;
+	var->commascounter = 0;
 	var->end = 0;
 	var->i = 0;
 	var->number = NULL;

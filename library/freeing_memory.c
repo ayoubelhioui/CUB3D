@@ -6,7 +6,7 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 19:12:55 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/09/06 10:23:25 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:45:23 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_freeing_memory	*ft_lstnew(void *content)
 void	*alocate(t_freeing_memory **head, int size)
 {
 	void	*data;
-	
+
 	data = malloc(size);
 	if (!data)
 		return (NULL);

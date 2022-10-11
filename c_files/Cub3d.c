@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijmari <ijmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:03:46 by ijmari            #+#    #+#             */
-/*   Updated: 2022/10/10 11:25:14 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:36:53 by ijmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,33 +29,75 @@ int	iswall(float a, float b, t_player *player)
 	return (player->data->map[wallchecky][wallcheckx] == '1');
 }
 
-void	change_player_status(t_player *player)
+int	check_line(t_player *player, float endX, float endY)
 {
-	float	newrotation;
-	float	movea;
-	float	moveb;
+	double	pixelx;
+	double	pixely;
+	double	deltax;
+	double	deltay;
+	int		pixels;
+
+	deltax = (endX - player->x);
+	deltay = (endY - player->y);
+	pixels = sqrt((deltax * deltax) + (deltay * deltay));
+	deltax /= pixels;
+	deltay /= pixels;
+	pixelx = player->x;
+	pixely = player->y;
+	while (pixels)
+	{
+		if (iswall(pixelx, pixely, player))
+			return (1);
+		pixelx += deltax;
+		pixely += deltay;
+		--pixels;
+	}
+	return (0);
+}
+
+void	check_up(t_player *player)
+{
 	float	a;
 	float	b;
 
-	player->rotationAngle += player->turnDirection * player->turnSpeed;
-	if (player->rotationAngle != M_PI / 2)
-		newrotation = player->rotationAngle - (M_PI / 2);
-	a = player->x + cos(player->rotationAngle) * \
-	(player->walkDirection * player->walkSpeed);
-	b = player->y + sin(player->rotationAngle) * \
-	(player->walkDirection * player->walkSpeed);
-	if (!iswall(a, b, player))
+	player->rotationangle += player->turndirection * player->turnspeed;
+	a = player->x + cos(player->rotationangle) * \
+	player->walkspeed;
+	b = player->y + sin(player->rotationangle) * \
+	player->walkspeed;
+	if (!iswall(a, b, player) && !check_line(player, player->x + 50 * \
+		cos(player->rotationangle), player->y + 50 * sin(player->rotationangle))
+		&& !check_line(player, player->x + 50 * \
+		cos(player->rotationangle - (10 * M_PI / 180)), player->y + 50 * \
+		sin(player->rotationangle - (10 * M_PI / 180)))
+		&& !check_line(player, player->x + 50 * \
+		cos(player->rotationangle + (10 * M_PI / 180)), player->y + 50 * \
+		sin(player->rotationangle + (10 * M_PI / 180))))
 		set_player(a, b, player);
-	if (player->moveDirection != 0)
-	{
-		movea = player->x + (15 * player->moveDirection * cos(newrotation));
-		moveb = player->y + (15 * player->moveDirection * sin(newrotation));
-		if (!iswall(movea, moveb, player))
-			set_player(movea, moveb, player);
-	}
 }
 
-void	startGame(t_directions *path)
+void	check_down(t_player *player)
+{
+	float	a;
+	float	b;
+
+	player->rotationangle += player->turndirection * player->turnspeed;
+	a = player->x + cos(player->rotationangle) * \
+	player->walkspeed * -1;
+	b = player->y + sin(player->rotationangle) * \
+	player->walkspeed * -1;
+	if (!iswall(a, b, player) && !check_line(player, player->x - 50 * \
+		cos(player->rotationangle), player->y - 50 * sin(player->rotationangle))
+		&& !check_line(player, player->x - 50 * \
+		cos(player->rotationangle - (10 * M_PI / 180)), player->y - 50 * \
+		sin(player->rotationangle - (10 * M_PI / 180)))
+		&& !check_line(player, player->x - 50 * \
+		cos(player->rotationangle + (10 * M_PI / 180)), player->y - 50 * \
+		sin(player->rotationangle + (10 * M_PI / 180))))
+		set_player(a, b, player);
+}
+
+void	start_game(t_directions *path)
 {
 	t_player	player;
 
@@ -64,7 +106,7 @@ void	startGame(t_directions *path)
 	get_rays(&player);
 	render_3d(&player);
 	mlx_put_image_to_window(player.image.mlx, player.image.win, \
-	player.img.img, 0, 0);   
+	player.img.img, 0, 0);
 	mlx_hook(player.image.win, 2, 0, next_frame, &player);
 	mlx_hook(player.image.win, 3, 0, stop, NULL);
 	mlx_hook(player.image.win, 17, (1L << 15), close_win, &player);

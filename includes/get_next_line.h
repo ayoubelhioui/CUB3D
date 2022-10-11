@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 12:09:11 by ael-hiou          #+#    #+#             */
-/*   Updated: 2021/11/26 16:24:23 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:44:35 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +17,8 @@
 # include <stdio.h>
 # include <unistd.h>
 
-#define BUFFER_SIZE 10
+# define BUFFER_SIZE 10
+
 char	*ft_strdup(char *src);
 size_t	ft_strlen(char *str);
 char	*ft_strjoin(char *s1, char *s2);

@@ -6,51 +6,65 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:32:16 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/10 10:58:03 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:30:43 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void    isSurroundedByWallsUtils(char *trimmed)
+int	is_full_spaces(char *entereddata)
 {
-    int j;
+	int	i;
 
-    j = 0;
-    while (trimmed[j])
-    {
-        if (trimmed[j] != '1' && trimmed[j] != SPACE)
-            errorMessage(SURROUNDED_MSG);
-        j++;
-    }
+	i = 0;
+	while (entereddata[i])
+	{
+		if (entereddata[i] != SPACE)
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-void	isSurroundedByWalls(char **map, int map_height)
+void	is_surrounded_by_walls_utils(char *trimmed)
 {
-	int	stringLength;
-	int	i;
+	int	j;
+
+	j = 0;
+	while (trimmed[j])
+	{
+		if (trimmed[j] != '1' && trimmed[j] != SPACE)
+			error_message(SURROUNDED_MSG);
+	j++;
+	}
+}
+
+void	is_surrounded_by_walls(char **map, int map_height)
+{
+	int		string_length;
+	int		i;
 	char	*trimmed;
 
 	i = 0;
-	stringLength = 0;
+	string_length = 0;
 	while (map[i])
 	{
 		trimmed = ft_strtrim(map[i], " ");
-		stringLength = ft_strlen(trimmed) - 1;
+		string_length = ft_strlen(trimmed) - 1;
 		if (is_full_spaces(trimmed))
 		{
 			i++;
-			continue;
+			free (trimmed);
+			continue ;
 		}
-		else if (trimmed[0] != '1' || trimmed[stringLength] != '1')
-            errorMessage(SURROUNDED_MSG);
+		else if (trimmed[0] != '1' || trimmed[string_length] != '1')
+			error_message(SURROUNDED_MSG);
 		if (i == 0 || i == map_height - 1)
-            isSurroundedByWallsUtils(trimmed);
+			is_surrounded_by_walls_utils(trimmed);
 		free (trimmed);
 		i++;
 	}
 }
-
 
 int	check_for_double_newlines(char *map)
 {
@@ -60,28 +74,31 @@ int	check_for_double_newlines(char *map)
 	while (map[i])
 	{
 		if (map[i] == NEW_LINE && map[i + 1] == NEW_LINE)
-			errorMessage(DOUBLE_NEW_LINE);
+			error_message(DOUBLE_NEW_LINE);
 		i++;
 	}
 	return (0);
 }
-    
-void unwanted_characters(t_secondPartVars *vars)
-{
-    int j;
 
-    j = 0;
-    while (vars->enteredData[j])
-    {
-        if (vars->enteredData[j] == 'N' || vars->enteredData[j] == 'S' || vars->enteredData[j] == 'W' || vars->enteredData[j] == 'E')
-        {
-            if (vars->isPlayerExist == 0)
-                vars->isPlayerExist = 1;
-            else
-                errorMessage(CONTAIN_MORE_MSG);
-        }
-        else if (vars->enteredData[j] != ZERO && vars->enteredData[j] != ONE && vars->enteredData[j] != SPACE && vars->enteredData[j] != NEW_LINE)
-            errorMessage(UNWANTED_CHARACTER_MSG);
-        j++;
-    }
+void	unwanted_characters(t_secondPartVars *vars)
+{
+	int	j;
+
+	j = 0;
+	while (vars->entereddata[j])
+	{
+		if (vars->entereddata[j] == 'N' || vars->entereddata[j] == 'S' || \
+		vars->entereddata[j] == 'W' || vars->entereddata[j] == 'E')
+		{
+			if (vars->isplayerexist == 0)
+				vars->isplayerexist = 1;
+			else
+				error_message(CONTAIN_MORE_MSG);
+		}
+		else if (vars->entereddata[j] != ZERO && \
+		vars->entereddata[j] != ONE && vars->entereddata[j] != \
+		SPACE && vars->entereddata[j] != NEW_LINE)
+			error_message(UNWANTED_CHARACTER_MSG);
+		j++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:28:53 by ijmari            #+#    #+#             */
-/*   Updated: 2022/10/03 10:16:49 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:25:56 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 int	next_frame(int key, t_player *player)
 {
+	if (key == 48 && player->mouse == 0)
+		player->mouse = 1;
+	else if (key == 48 && player->mouse == 1)
+		player->mouse = 0;
 	if (key == 53)
 	{
 		free(player->ray);
 		free(player->width_for_each);
 		exit(1);
 	}
-	initKeys(player, key);
+	init_keys(player, key);
 	mlx_clear_window(player->image.mlx, player->image.win);
-	change_player_status(player);
+	change_player_status(player, key);
 	get_rays(player);
 	render_3d(player);
 	mlx_put_image_to_window(player->image.mlx, \
