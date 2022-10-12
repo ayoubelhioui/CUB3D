@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   angle_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijmari <ijmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 14:10:59 by ijmari            #+#    #+#             */
-/*   Updated: 2022/10/11 15:44:50 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/11 22:01:25 by ijmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 void	check_left_angle(t_player *player)
 {

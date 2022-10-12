@@ -6,11 +6,11 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:26:31 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/11 17:09:22 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/12 09:39:45 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 void	choosing_direction_utils(char *first_part, char *second_part, \
 t_checkDuplicate *vars, t_directions *path)
@@ -58,7 +58,6 @@ t_directions *path, t_checkDuplicate *checkDuplicate)
 		free (first_part);
 		path->floor_color = checking_rgb_format(second_part);
 		free (second_part);
-		checkDuplicate->fcounter = 1;
 	}
 	else
 	{
@@ -66,7 +65,6 @@ t_directions *path, t_checkDuplicate *checkDuplicate)
 		free (first_part);
 		path->ceiling_color = checking_rgb_format(second_part);
 		free (second_part);
-		checkDuplicate->ccounter = 1;
 	}
 }
 

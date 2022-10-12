@@ -6,11 +6,11 @@
 /*   By: ijmari <ijmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:06:03 by ijmari            #+#    #+#             */
-/*   Updated: 2022/10/10 14:41:52 by ijmari           ###   ########.fr       */
+/*   Updated: 2022/10/11 22:01:25 by ijmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 void	init_keys(t_player *player, int key)
 {

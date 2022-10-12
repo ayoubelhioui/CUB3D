@@ -6,11 +6,11 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:32:16 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/11 15:30:43 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:28:04 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 int	is_full_spaces(char *entereddata)
 {
@@ -39,10 +39,10 @@ void	is_surrounded_by_walls_utils(char *trimmed)
 	}
 }
 
-void	is_surrounded_by_walls(char **map, int map_height)
+void	is_surrounded_by_walls(char **map, size_t map_height)
 {
+	size_t	i;
 	int		string_length;
-	int		i;
 	char	*trimmed;
 
 	i = 0;

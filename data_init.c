@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   data_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijmari <ijmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 10:47:40 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/11 15:36:01 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/11 22:01:25 by ijmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 void	checking_duplicate_init(t_checkDuplicate *checkDuplicate)
 {

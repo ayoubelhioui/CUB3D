@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   library.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijmari <ijmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:37:36 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/11 15:43:04 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/11 22:02:37 by ijmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "../includes/get_next_line.h"
+# include "get_next_line.h"
 
 typedef struct freeing_memory
 {

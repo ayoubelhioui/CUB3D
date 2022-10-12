@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijmari <ijmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 11:52:30 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/11 16:34:22 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/11 22:01:25 by ijmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 void	checking_rgb_number(char *secondPart, t_checking_rgb *var)
 {

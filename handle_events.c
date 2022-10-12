@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ijmari <ijmari@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 21:28:53 by ijmari            #+#    #+#             */
-/*   Updated: 2022/10/11 10:25:56 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/11 22:01:25 by ijmari           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 int	next_frame(int key, t_player *player)
 {

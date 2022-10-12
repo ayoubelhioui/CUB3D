@@ -6,7 +6,7 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:26:26 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/11 17:50:21 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/12 10:47:27 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "includes/get_next_line.h"
-# include "library/library.h"
+# include "get_next_line.h"
+# include "library.h"
 # include <mlx.h>
 # include <math.h>
 # include <stdlib.h>
@@ -236,10 +236,10 @@ t_directions *path, t_checkDuplicate *checkDuplicate);
 void			ft_free(char **data);
 void			error_message(char *message);
 void			path_init(t_directions *path);
-void			is_surrounded_by_walls(char **map, int map_height);
+void			is_surrounded_by_walls(char **map, size_t map_height);
 void			map_validation(t_directions *path);
 void			error_message(char *message);
-int				get_size(char **data);
+size_t			get_size(char **data);
 void			start_game(t_directions *path);
 void			initKeys(t_player *player, int key);
 float			getInitPos(t_directions *path);

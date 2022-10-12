@@ -6,11 +6,11 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 11:15:12 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/11 16:36:58 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/12 10:34:00 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 void	counter_checker(int *texturecounter, char *message)
 {
@@ -35,9 +35,9 @@ void	error_message(char *message)
 	exit (1);
 }
 
-int	get_size(char **data)
+size_t	get_size(char **data)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (data[i])

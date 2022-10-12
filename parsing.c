@@ -6,11 +6,11 @@
 /*   By: ael-hiou <ael-hiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:26:09 by ael-hiou          #+#    #+#             */
-/*   Updated: 2022/10/11 17:59:53 by ael-hiou         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:43:31 by ael-hiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 void	get_player_position(t_directions *path)
 {
@@ -86,9 +86,7 @@ void	getting_map_content(int fd, t_directions *path)
 			break ;
 		if (ft_strncmp(vars.entereddata, "\n"))
 		{
-			if (vars.entereddata[ft_strlen(vars.entereddata) - 1] == NEW_LINE)
-				vars.entereddata[ft_strlen(vars.entereddata) - 1] = '\0';
-			vars.trimmeddata = ft_strtrim(vars.entereddata, " ");
+			vars.trimmeddata = ft_strtrim(vars.entereddata, " \n");
 			vars.linescounter++;
 			map_first_part(vars.trimmeddata, path, &check_duplicate);
 		}
